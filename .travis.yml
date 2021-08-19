@@ -4,6 +4,6 @@ deploy:
   provider: heroku
   api_key:
     secure: IEY07MMy6PlGwi9kQPIJkeE2Ns021ZcgYDBeu3PgX0SmTRs1ytKg6vShlQrvG0EMEB89yDvFPBVA6wscQB28S6/6SbPExnlUo5fD5NZ4mtjbuuRlZrcxpUZuAuxPMXfWsVgykbvc/7m5Z/QKPy9TexpjUJv/qdge0Xretpgl0xa06txCchazFahLSGgSdZJ7g/MewDdO3DVsRHZtZUTlnmpIWn/a3GRwQnOdT0P4oBFfQDwMAQRwpl8Nxt/dGirwUBTBpImoLZB/gEPL79X/Le4aXI1aP0Bx6PliBSshCkqxyQxAGC7iyP1Wa4JBsL2anesz3XBugyOIp10NKA4f7sqUGjYmK6/CcnMYHB780gsh5OF8R8N9JkZgPtOftn038Qg9eglBEdXW8+6wyhnTfyjAABDL2jf6xzvmh4wORK0vD2IDngE78llzo+eoEX+0kkhw7n9gaW1eySZboPwiJ/kxLoahksconbBSnqRjjUMjDqicgVnnoQuKk5Ie7avtQva1UJBRkcLtPNvsHOkUn6BtxqmSrO4ST7f8ODqy4YF11VUX8lJO2mGllpo6/b1yOPcDEbV+kWderi/V1G5TlpOHtxoxdsZdtHo53iKASd2WsNnKSCbDZ/SwCWZX1hhx1ZHJr76P5Q51xJreg+8iYXf0cUdl8766cItpxEcqU+A=
-    app: matriz-curricular-dev
-    on:
-      all_branches: true
+  app: matriz-curricular-dev
+  on:
+    all_branches: true
