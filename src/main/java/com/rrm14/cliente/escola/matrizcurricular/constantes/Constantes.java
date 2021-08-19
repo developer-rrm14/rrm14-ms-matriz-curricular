@@ -4,10 +4,10 @@ public final class Constantes {
 	
 	private Constantes(){}
 
-	public static final String MATERIA_NAO_ENCONTRADA       = "Matéria Não Encontrada";
-	public static final String CURSO_NAO_ENCONTRADO         = "Curso Não Encontrado";
-	public static final String MATERIA_NOME_VAZIO           = "Informe o Nome da Matéria";
-	public static final String MATERIA_CODIGO_VAZIO         = "Informe o Código da Matéria";
+	public static final String MATERIA_NAO_ENCONTRADA       = "Matéria Não Encontrada.";
+	public static final String CURSO_NAO_ENCONTRADO         = "Curso Não Encontrado.";
+	public static final String MATERIA_NOME_VAZIO           = "Informe o Nome da Matéria.";
+	public static final String MATERIA_CODIGO_VAZIO         = "Informe o Código da Matéria.";
 	public static final String MATERIA_VIOLACAO_REMOCAO     = "Matéria Não Pode ser Removida";
 	public static final String CURSO_NOME_VAZIO             = "Informe o Nome do Curso";
 	public static final String CURSO_CODIGO_VAZIO           = "Informe o Código do Curso";
