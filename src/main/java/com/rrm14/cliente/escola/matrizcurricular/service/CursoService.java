@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.rrm14.cliente.escola.matrizcurricular.constantes.Constantes;
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
 import com.rrm14.cliente.escola.matrizcurricular.entity.CursoEntity;
 import com.rrm14.cliente.escola.matrizcurricular.entity.MateriaEntity;
 import com.rrm14.cliente.escola.matrizcurricular.exception.CursoException;
@@ -31,7 +31,7 @@ public class CursoService implements ICursoService {
 		this.materiaRepository = materiaRepository;
 	}
 	
-	@CachePut(key = "#id")
+	@CachePut(key = "#codigo")
 	@Override
 	public CursoEntity consultarPorCodigo(String codigo) {
 		try {
@@ -56,7 +56,7 @@ public class CursoService implements ICursoService {
 		try {
 			return this.cursoRepository.findAll();
 		}catch(Exception e) {
-			return new ArrayList<>();
+			throw new CursoException(Constantes.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
 	}
 	
@@ -116,7 +116,7 @@ public class CursoService implements ICursoService {
 		
 		List<MateriaEntity> listaMateriaEntity = new ArrayList<>();
 		
-		if(!cursoModel.getMaterias().isEmpty()) {
+		if(cursoModel.getMaterias()!= null && !cursoModel.getMaterias().isEmpty()) {
 			cursoModel.getMaterias().forEach(materia->{
 				if (this.materiaRepository.findById(materia).isPresent()) {
 					listaMateriaEntity.add(this.materiaRepository.findById(materia).get());

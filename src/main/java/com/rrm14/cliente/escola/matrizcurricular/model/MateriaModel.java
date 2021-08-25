@@ -4,7 +4,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
-import com.rrm14.cliente.escola.matrizcurricular.constantes.Constantes;
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

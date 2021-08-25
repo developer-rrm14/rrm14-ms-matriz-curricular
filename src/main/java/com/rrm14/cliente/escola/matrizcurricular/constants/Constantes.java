@@ -1,4 +1,4 @@
-package com.rrm14.cliente.escola.matrizcurricular.constantes;
+package com.rrm14.cliente.escola.matrizcurricular.constants;
 
 public final class Constantes {
 	
@@ -9,6 +9,7 @@ public final class Constantes {
 	public static final String MATERIA_NOME_VAZIO           = "Informe o Nome da Matéria.";
 	public static final String MATERIA_CODIGO_VAZIO         = "Informe o Código da Matéria.";
 	public static final String MATERIA_VIOLACAO_REMOCAO     = "Matéria Não Pode ser Removida";
+	public static final String MATERIA_JA_CADASTRADA        = "Matéria Já Cadastrado Anteriormente.";
 	public static final String CURSO_NOME_VAZIO             = "Informe o Nome do Curso";
 	public static final String CURSO_CODIGO_VAZIO           = "Informe o Código do Curso";
 	public static final String MATERIA_MINIMO_HORAS         = "Permitido o Mínimo de 34 Horas por Matéria";

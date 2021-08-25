@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rrm14.cliente.escola.matrizcurricular.constantes.Constantes;
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
 import com.rrm14.cliente.escola.matrizcurricular.model.MateriaModel;
 import com.rrm14.cliente.escola.matrizcurricular.model.Response;
 import com.rrm14.cliente.escola.matrizcurricular.service.IMateriaService;
@@ -44,7 +44,7 @@ public class MateriaController {
 				.excluirMateria(id)).withRel(Constantes.DELETE));
 		
 		response.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(MateriaController.class)
-				.atualizaMateria(materia)).withRel(Constantes.UPDATE));
+				.atualizarMateria(materia)).withRel(Constantes.UPDATE));
 		
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
@@ -71,7 +71,7 @@ public class MateriaController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Response<Boolean>> atualizaMateria(@Valid @RequestBody MateriaModel materia) {
+	public ResponseEntity<Response<Boolean>> atualizarMateria(@Valid @RequestBody MateriaModel materia) {
 		Response<Boolean> response = new Response<>();
 		response.setData(materiaService.atualizar(materia));
 		response.setStatusCode(HttpStatus.OK.value());

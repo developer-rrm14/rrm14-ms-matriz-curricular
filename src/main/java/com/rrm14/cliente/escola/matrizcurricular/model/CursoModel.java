@@ -5,7 +5,7 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.rrm14.cliente.escola.matrizcurricular.constantes.Constantes;
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

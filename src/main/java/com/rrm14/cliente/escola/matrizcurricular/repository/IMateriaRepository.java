@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.rrm14.cliente.escola.matrizcurricular.constantes.Queries;
+import com.rrm14.cliente.escola.matrizcurricular.constants.Queries;
 import com.rrm14.cliente.escola.matrizcurricular.entity.MateriaEntity;
 
 @Repository
@@ -18,5 +18,8 @@ public interface IMateriaRepository extends JpaRepository<MateriaEntity, Long> {
 	
 	@Query(Queries.QUERY_MATERIA_FREQUENCIA)
 	public List<MateriaEntity> findByFrequencia(@Param("frequencia")int frequencia);
+	
+	@Query(Queries.QUERY_MATERIA_POR_CODIGO)
+	public MateriaEntity findMateriaByCodigo(@Param("codigo") String codigo);
 
 }

@@ -1,6 +1,5 @@
 package com.rrm14.cliente.escola.matrizcurricular.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +11,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.rrm14.cliente.escola.matrizcurricular.constantes.Constantes;
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
 import com.rrm14.cliente.escola.matrizcurricular.entity.MateriaEntity;
 import com.rrm14.cliente.escola.matrizcurricular.exception.MateriaException;
 import com.rrm14.cliente.escola.matrizcurricular.model.MateriaModel;
@@ -54,17 +53,25 @@ public class MateriaService implements IMateriaService {
 			return this.mapper.map(this.materiaRepository.findAll(), 
 					new TypeToken<List<MateriaModel>>(){}.getType());
 		}catch(Exception e) {
-			return new ArrayList<>();
+			throw new MateriaException(Constantes.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
 	}
 	
 	@Override
 	public Boolean cadastrar(MateriaModel materiaModel) {
 		try {		
-			// Parse do MateriaModel para MateriaEntity
-			MateriaEntity materiaEntity = this.mapper.map(materiaModel, MateriaEntity.class);		
-			this.materiaRepository.save(materiaEntity);
-			return Boolean.TRUE;
+			
+			if(materiaModel.getId() != null) {
+				throw new MateriaException(Constantes.ERRO_ID_INFORMADO, HttpStatus.BAD_REQUEST);
+			}
+			
+			if(this.materiaRepository.findMateriaByCodigo(materiaModel.getCodigo())!= null) {
+				throw new MateriaException(Constantes.MATERIA_JA_CADASTRADA, HttpStatus.BAD_REQUEST);
+			}
+			
+			return this.cadastrarOuAtualizar(materiaModel);
+		}catch(MateriaException m) {
+			throw m;
 		}catch(Exception e) {
 			throw new MateriaException(Constantes.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -74,12 +81,7 @@ public class MateriaService implements IMateriaService {
 	public Boolean atualizar(MateriaModel materiaModel) {
 		try {
 			this.consultar(materiaModel.getId());
-		
-			// Parse do MateriaModel para MateriaEntity
-			MateriaEntity materiaAtualiza = this.mapper.map(materiaModel, MateriaEntity.class);
-			this.materiaRepository.save(materiaAtualiza);
-			
-			return Boolean.TRUE;
+			return this.cadastrarOuAtualizar(materiaModel);
 		}catch(MateriaException m) {
 			throw m;
 		}catch(Exception e) {
@@ -96,12 +98,7 @@ public class MateriaService implements IMateriaService {
 		}catch(MateriaException m) {
 			throw m;
 		}catch(Exception e) {
-			if (e.getMessage().contains("ConstraintViolationException")) {
-				throw new MateriaException(Constantes.MATERIA_VIOLACAO_REMOCAO, HttpStatus.INTERNAL_SERVER_ERROR);
-			}else {
-				throw new MateriaException(Constantes.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-			
+			throw new MateriaException(Constantes.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);	
 		}
 	}
 	
@@ -112,7 +109,7 @@ public class MateriaService implements IMateriaService {
 			return this.mapper.map(this.materiaRepository.findByHoraMinima(horaMinima), 
 					new TypeToken<List<MateriaModel>>(){}.getType());
 		}catch(Exception e) {
-			return new ArrayList<>();
+			throw new MateriaException(Constantes.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
 	}
 	
@@ -123,8 +120,14 @@ public class MateriaService implements IMateriaService {
 			return this.mapper.map(this.materiaRepository.findByFrequencia(frequencia), 
 					new TypeToken<List<MateriaModel>>(){}.getType());
 		}catch(Exception e) {
-			return new ArrayList<>();
+			throw new MateriaException(Constantes.ERRO_INTERNO, HttpStatus.INTERNAL_SERVER_ERROR);
 		}	
+	}
+	
+	private Boolean cadastrarOuAtualizar(MateriaModel materiaModel) {
+		MateriaEntity materiaEntity = this.mapper.map(materiaModel, MateriaEntity.class);
+		this.materiaRepository.save(materiaEntity);
+		return Boolean.TRUE;
 	}
 
 	
