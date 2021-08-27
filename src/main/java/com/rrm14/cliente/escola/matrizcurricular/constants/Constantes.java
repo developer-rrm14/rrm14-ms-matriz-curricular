@@ -22,9 +22,9 @@ public final class Constantes {
 	public static final String MATERIA_MAXIMO_FREQUENCIA    = "Permitido o Mínimo de 2 Vezes ao Ano";
 	public static final String ERRO_INTERNO                 = "Erro Interno Identificado. Contate o Suporte";
 	public static final String ERRO_ID_INFORMADO            = "ID Não Pode Ser Informado.";
-	public static final String CURSO_JA_CADASTRADO          = "Curso Já Cadastrado Anteriormente.";
-	public static final String DELETE                       = "DELETE";
-	public static final String UPDATE                       = "UPDATE";
+	public static final String CURSO_JA_CADASTRADO                = "Curso Já Cadastrado Anteriormente.";
+	public static final String DELETE                             = "DELETE";
+	public static final String UPDATE                             = "UPDATE";
 	public static final String SWAGGER_CADASTRAR_CURSO            = "Cadastrar um Novo Curso"; 
 	public static final String SWAGGER_LISTAR_CURSO               = "Listar Todos os Cursos Cadastrados";
 	public static final String SWAGGER_CONSULTAR_CODIGO_CURSO     = "Consultar Curso por Código";
@@ -42,5 +42,9 @@ public final class Constantes {
 	public static final String SWAGGER_MENSAGEM_400               = "Erro na Requisição Enviada Pelo Cliente";
 	public static final String SWAGGER_MENSAGEM_404               = "Resultado Não Encontrado";
 	public static final String SWAGGER_MENSAGEM_500               = "Erro Interno no Serviço";
+	public static final String SWAGGER_CURSO                      = "Curso";
+	public static final String SWAGGER_CURSO_DESCRICAO            = "Operações Referentes a Manipulação da Entidade Curso";
+	public static final String SWAGGER_MATERIA                    = "Matéria";
+	public static final String SWAGGER_MATERIA_DESCRICAO          = "Operações Referentes a Manipulação da Entidade Matéria";
 	
 }

@@ -24,9 +24,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurationSupport {
 	
-	public static final String CURSO = "Curso";
-	public static final String CURSO_DESCRICAO = "Operações Referentes a Manipulação da Entidade Curso";
-	public static final String MATERIA = "Matéria";
+	public static final String CURSO             = "Curso";
+	public static final String CURSO_DESCRICAO   = "Operações Referentes a Manipulação da Entidade Curso";
+	public static final String MATERIA           = "Matéria";
 	public static final String MATERIA_DESCRICAO = "Operações Referentes a Manipulação da Entidade Matéria";
 	
 	@Bean
