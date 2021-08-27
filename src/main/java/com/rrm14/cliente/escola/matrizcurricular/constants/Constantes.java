@@ -25,6 +25,13 @@ public final class Constantes {
 	public static final String CURSO_JA_CADASTRADO                = "Curso Já Cadastrado Anteriormente.";
 	public static final String DELETE                             = "DELETE";
 	public static final String UPDATE                             = "UPDATE";
+	public static final String SWAGGER_TITULO                     = "MATRIZ CURRICULAR"; 
+	public static final String SWAGGER_DESCRICAO                  = "API Responsável pelo gerenciamento da matriz curricular."; 
+	public static final String SWAGGER_VERSAO                     = "1.0.0"; 
+	public static final String SWAGGER_MAIN_RESOURCE              = "swagger-ui.html"; 
+	public static final String SWAGGER_WEBJARS_RESOURCE           = "/webjars/**"; 
+	public static final String SWAGGER_MAIN_CLASSPATH             = "classpath:META-INF/resources/";
+	public static final String SWAGGER_WEBJARS_CLASSPATH          = "classpath:META-INF/resources/webjars/";
 	public static final String SWAGGER_CADASTRAR_CURSO            = "Cadastrar um Novo Curso"; 
 	public static final String SWAGGER_LISTAR_CURSO               = "Listar Todos os Cursos Cadastrados";
 	public static final String SWAGGER_CONSULTAR_CODIGO_CURSO     = "Consultar Curso por Código";

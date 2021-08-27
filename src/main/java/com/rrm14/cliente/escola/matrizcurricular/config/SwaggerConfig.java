@@ -12,6 +12,8 @@ import org.springframework.plugin.core.SimplePluginRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
+
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -46,15 +48,20 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 	}
 
 	private ApiInfo metaData() {
-		return new ApiInfoBuilder().title("MATRIZ CURRICULAR")
-				.description("API Responsável pelo gerenciamento da matriz curricular.")
-				.version("1.0.0").license("").build();
+		return new ApiInfoBuilder().title(Constantes.SWAGGER_TITULO)
+								   .description(Constantes.SWAGGER_DESCRICAO)
+								   .version(Constantes.SWAGGER_VERSAO)
+								   .license("")
+								   .build();
 	}
 	
 	@Override
 	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:META-INF/resources/");
-		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:META-INF/resources/webjars/");
+		registry.addResourceHandler(Constantes.SWAGGER_MAIN_RESOURCE)
+		.addResourceLocations(Constantes.SWAGGER_MAIN_CLASSPATH);
+		
+		registry.addResourceHandler(Constantes.SWAGGER_WEBJARS_RESOURCE)
+		.addResourceLocations(Constantes.SWAGGER_WEBJARS_CLASSPATH);
 	}
 	
 
