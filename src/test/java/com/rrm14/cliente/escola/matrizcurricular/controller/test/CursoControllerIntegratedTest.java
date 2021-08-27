@@ -23,6 +23,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
 import com.rrm14.cliente.escola.matrizcurricular.entity.CursoEntity;
 import com.rrm14.cliente.escola.matrizcurricular.entity.MateriaEntity;
 import com.rrm14.cliente.escola.matrizcurricular.model.CursoModel;
@@ -86,7 +87,7 @@ public class CursoControllerIntegratedTest {
 		List<MateriaEntity> listMaterias = this.materiaRepository.findAll();
 
 		CursoEntity c1 = new CursoEntity();
-		c1.setCodigo("ENGC");
+		c1.setCodigo("ENGCI");
 		c1.setNome("ENGENHARIA DA COMPUTACAO");
 		c1.setMaterias(listMaterias);
 
@@ -101,6 +102,7 @@ public class CursoControllerIntegratedTest {
 	void testListarCursos() {
 		
 		ResponseEntity<Response<List<CursoEntity>>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange(this.montaUri(""), HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<CursoEntity>>>() {
 				});
@@ -120,6 +122,7 @@ public class CursoControllerIntegratedTest {
 		String codigo = cursoList.get(0).getCodigo();
 		
 		ResponseEntity<Response<CursoEntity>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange(this.montaUri(codigo), HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<CursoEntity>>() {
 				});
@@ -148,6 +151,7 @@ public class CursoControllerIntegratedTest {
 		HttpEntity<CursoModel> request = new HttpEntity<>(c4);
 		
 		ResponseEntity<Response<Boolean>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange(this.montaUri(""), HttpMethod.POST, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
@@ -162,31 +166,32 @@ public class CursoControllerIntegratedTest {
 	
 	
 	
-//	@Test
-//	void testAtualizarCurso() {
-//		
-//		List<CursoEntity> cursosList = this.cursoRepository.findAll();
-//		CursoEntity cursoEntity = cursosList.get(0);
-//
-//		CursoModel cursoModel = new CursoModel();
-//
-//		cursoModel.setId(cursoEntity.getId());
-//		cursoModel.setCodigo(cursoEntity.getCodigo());
-//		cursoModel.setNome("Teste Atualiza curso");
-//
-//		HttpEntity<CursoModel> request = new HttpEntity<>(cursoModel);
-//
-//		ResponseEntity<Response<Boolean>> cursos = restTemplate
-//				.exchange(this.montaUri(""), HttpMethod.PUT, request,
-//				new ParameterizedTypeReference<Response<Boolean>>() {
-//				});
-//		CursoEntity cursoAtualizado = this.cursoRepository.findCursoByCodigo(cursoEntity.getCodigo());
-//
-//		assertTrue(cursos.getBody().getData());
-//		assertEquals("Teste Atualiza curso", cursoAtualizado.getNome());
-//		assertEquals(200, cursos.getBody().getStatusCode());
-//				
-//	}
+	@Test
+	void testAtualizarCurso() {
+		
+		List<CursoEntity> cursosList = this.cursoRepository.findAll();
+		CursoEntity cursoEntity = cursosList.get(0);
+
+		CursoModel cursoModel = new CursoModel();
+
+		cursoModel.setId(cursoEntity.getId());
+		cursoModel.setCodigo(cursoEntity.getCodigo());
+		cursoModel.setNome("Teste Atualiza curso");
+
+		HttpEntity<CursoModel> request = new HttpEntity<>(cursoModel);
+	
+		ResponseEntity<Response<Boolean>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
+				.exchange(this.montaUri(""), HttpMethod.PUT, request,
+				new ParameterizedTypeReference<Response<Boolean>>() {
+				});
+		CursoEntity cursoAtualizado = this.cursoRepository.findCursoByCodigo(cursoEntity.getCodigo());
+
+		assertTrue(cursos.getBody().getData());
+		assertEquals("Teste Atualiza curso", cursoAtualizado.getNome());
+		assertEquals(200, cursos.getBody().getStatusCode());
+				
+	}
 	
 	
 	@Test
@@ -196,6 +201,7 @@ public class CursoControllerIntegratedTest {
 		Long id = cursoList.get(0).getId();
 		
 		ResponseEntity<Response<Boolean>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange(this.montaUri(id.toString()), HttpMethod.DELETE, null,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});

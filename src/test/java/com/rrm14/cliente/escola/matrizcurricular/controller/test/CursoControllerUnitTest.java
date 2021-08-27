@@ -25,6 +25,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
 import com.rrm14.cliente.escola.matrizcurricular.entity.CursoEntity;
 import com.rrm14.cliente.escola.matrizcurricular.entity.MateriaEntity;
 import com.rrm14.cliente.escola.matrizcurricular.model.CursoModel;
@@ -98,6 +99,7 @@ public class CursoControllerUnitTest {
 		Mockito.when(this.cursoService.listar()).thenReturn(new ArrayList<CursoEntity>());
 		
 		ResponseEntity<Response<List<CursoEntity>>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/curso/", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<CursoEntity>>>() {
 				});
@@ -112,6 +114,7 @@ public class CursoControllerUnitTest {
 		Mockito.when(this.cursoService.consultarPorCodigo("ENGECI")).thenReturn(cursoEntity);
 		
 		ResponseEntity<Response<CursoEntity>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/curso/ENGECI", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<CursoEntity>>() {
 				});
@@ -128,6 +131,7 @@ public class CursoControllerUnitTest {
 		HttpEntity<CursoModel> request = new HttpEntity<>(cursoModel);
 		
 		ResponseEntity<Response<Boolean>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/curso/", HttpMethod.POST, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
@@ -144,6 +148,7 @@ public class CursoControllerUnitTest {
 		HttpEntity<CursoModel> request = new HttpEntity<>(cursoModel);
 		
 		ResponseEntity<Response<Boolean>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/curso/", HttpMethod.PUT, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
@@ -158,6 +163,7 @@ public class CursoControllerUnitTest {
 		Mockito.when(this.cursoService.excluir(1L)).thenReturn(Boolean.TRUE);
 		
 		ResponseEntity<Response<Boolean>> cursos = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/curso/1", HttpMethod.DELETE, null,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});

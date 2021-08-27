@@ -16,11 +16,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rrm14.cliente.escola.matrizcurricular.config.SwaggerConfig;
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
 import com.rrm14.cliente.escola.matrizcurricular.entity.CursoEntity;
 import com.rrm14.cliente.escola.matrizcurricular.model.CursoModel;
 import com.rrm14.cliente.escola.matrizcurricular.model.Response;
 import com.rrm14.cliente.escola.matrizcurricular.service.ICursoService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
+
+@Api(tags = SwaggerConfig.CURSO)
 @RestController
 @RequestMapping("/curso")
 public class CursoController {
@@ -28,7 +36,12 @@ public class CursoController {
 	@Autowired
 	private ICursoService cursoService;
 
-	
+	@ApiOperation(value = Constantes.SWAGGER_CONSULTAR_CODIGO_CURSO)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = Constantes.SWAGGER_MENSAGEM_200),
+			@ApiResponse(code = 404, message = Constantes.SWAGGER_MENSAGEM_404),
+			@ApiResponse(code = 500, message = Constantes.SWAGGER_MENSAGEM_500),
+	})
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Response<CursoEntity>> consultarCursoPorCodigo(@PathVariable String codigo) {
 		Response<CursoEntity> response = new Response<>();
@@ -38,6 +51,11 @@ public class CursoController {
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 	
+	@ApiOperation(value = Constantes.SWAGGER_LISTAR_CURSO)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = Constantes.SWAGGER_MENSAGEM_200),
+			@ApiResponse(code = 500, message = Constantes.SWAGGER_MENSAGEM_500),
+	})
 	@GetMapping
 	public ResponseEntity<Response<List<CursoEntity>>> listarCursos(){
 		Response<List<CursoEntity>> response = new Response<>();
@@ -47,6 +65,12 @@ public class CursoController {
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 	
+	@ApiOperation(value = Constantes.SWAGGER_CADASTRAR_CURSO)
+	@ApiResponses(value = {
+			@ApiResponse(code = 201, message = Constantes.SWAGGER_MENSAGEM_201),
+			@ApiResponse(code = 400, message = Constantes.SWAGGER_MENSAGEM_400),
+			@ApiResponse(code = 500, message = Constantes.SWAGGER_MENSAGEM_500),
+	})
 	@PostMapping
 	public ResponseEntity<Response<Boolean>> cadastrarCurso(@Valid @RequestBody CursoModel curso){	
 		Response<Boolean> response = new Response<>();
@@ -56,6 +80,13 @@ public class CursoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(response);	
 	}
 	
+	@ApiOperation(value = Constantes.SWAGGER_ATUALIZAR_CURSO)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = Constantes.SWAGGER_MENSAGEM_200),
+			@ApiResponse(code = 400, message = Constantes.SWAGGER_MENSAGEM_400),
+			@ApiResponse(code = 404, message = Constantes.SWAGGER_MENSAGEM_404),
+			@ApiResponse(code = 500, message = Constantes.SWAGGER_MENSAGEM_500),
+	})
 	@PutMapping
 	public ResponseEntity<Response<Boolean>> atualizaCurso(@Valid @RequestBody CursoModel curso) {
 		Response<Boolean> response = new Response<>();
@@ -65,6 +96,12 @@ public class CursoController {
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
+	@ApiOperation(value = Constantes.SWAGGER_EXCLUIR_CURSO)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = Constantes.SWAGGER_MENSAGEM_200),
+			@ApiResponse(code = 404, message = Constantes.SWAGGER_MENSAGEM_404),
+			@ApiResponse(code = 500, message = Constantes.SWAGGER_MENSAGEM_500),
+	})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Response<Boolean>> excluirCurso(@PathVariable Long id) {
 		Response<Boolean> response = new Response<>();

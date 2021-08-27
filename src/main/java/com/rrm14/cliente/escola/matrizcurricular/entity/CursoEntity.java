@@ -5,13 +5,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -43,8 +44,7 @@ public class CursoEntity implements Serializable {
 	@Column(name="codigo")
 	private String codigo;
 	
-
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany @Fetch(FetchMode.JOIN)
 	@JoinColumn(name="curso_id")
 	private List<MateriaEntity> materias;
 	

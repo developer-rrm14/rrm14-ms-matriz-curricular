@@ -22,6 +22,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import com.rrm14.cliente.escola.matrizcurricular.constants.Constantes;
 import com.rrm14.cliente.escola.matrizcurricular.entity.MateriaEntity;
 import com.rrm14.cliente.escola.matrizcurricular.model.MateriaModel;
 import com.rrm14.cliente.escola.matrizcurricular.model.Response;
@@ -78,6 +79,7 @@ public class MateriaControllerIntegratedTest {
 	void testListarMaterias() {
 		
 		ResponseEntity<Response<List<MateriaModel>>> materias = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/materia/", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<MateriaModel>>>() {
 				});
@@ -92,6 +94,7 @@ public class MateriaControllerIntegratedTest {
 	void testConsultarMateriasPorHoraMinima() {
 		
 		ResponseEntity<Response<List<MateriaModel>>> materias = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/materia/horario-minimo/80", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<MateriaModel>>>() {
 				});
@@ -106,6 +109,7 @@ public class MateriaControllerIntegratedTest {
 	void testConsultarMateriasPorFrequencia() {
 		
 		ResponseEntity<Response<List<MateriaModel>>> materias = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/materia/frequencia/1", HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<List<MateriaModel>>>() {
 				});
@@ -123,6 +127,7 @@ public class MateriaControllerIntegratedTest {
 		Long id = materiaList.get(0).getId();
 		
 		ResponseEntity<Response<MateriaModel>> materias = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/materia/"+id, HttpMethod.GET, null,
 				new ParameterizedTypeReference<Response<MateriaModel>>() {
 				});
@@ -149,6 +154,7 @@ public class MateriaControllerIntegratedTest {
 		HttpEntity<MateriaEntity> request = new HttpEntity<>(m4);
 		
 		ResponseEntity<Response<Boolean>> materias = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/materia/", HttpMethod.POST, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
@@ -172,6 +178,7 @@ public class MateriaControllerIntegratedTest {
 		HttpEntity<MateriaEntity> request = new HttpEntity<>(materia);
 		
 		ResponseEntity<Response<Boolean>> materias = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/materia/", HttpMethod.PUT, request,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});
@@ -192,6 +199,7 @@ public class MateriaControllerIntegratedTest {
 		Long id = materiaList.get(0).getId();
 		
 		ResponseEntity<Response<Boolean>> materias = restTemplate
+				.withBasicAuth(Constantes.USUARIO_AUTENTICACAO, Constantes.SENHA_AUTENTICACAO)
 				.exchange("http://localhost:" + this.port + "/materia/"+id, HttpMethod.DELETE, null,
 				new ParameterizedTypeReference<Response<Boolean>>() {
 				});

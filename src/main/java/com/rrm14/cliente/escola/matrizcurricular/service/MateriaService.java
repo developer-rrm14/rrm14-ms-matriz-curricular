@@ -17,6 +17,10 @@ import com.rrm14.cliente.escola.matrizcurricular.exception.MateriaException;
 import com.rrm14.cliente.escola.matrizcurricular.model.MateriaModel;
 import com.rrm14.cliente.escola.matrizcurricular.repository.IMateriaRepository;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @CacheConfig(cacheNames = {"materia"})
 @Service
 public class MateriaService implements IMateriaService {
@@ -46,6 +50,7 @@ public class MateriaService implements IMateriaService {
 		}
 	}
 
+	
 	@CachePut(unless = "#result.size()<3")
 	@Override
 	public List<MateriaModel> listar() {
