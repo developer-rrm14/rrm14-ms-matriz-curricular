@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.rrm14.cliente.escola</groupId>
 	<artifactId>matriz-curricular</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>matriz-curricular</name>
 	<description>MicroService Para Gestão de Matriz Curricular</description>
 	<properties>
