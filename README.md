@@ -7,6 +7,10 @@ https://matriz-curricular-dev.herokuapp.com/swagger-ui.html#
 
 MicroService responsible for managing course and subject entities
 
+# Access to Microservice
+- User: moduretick
+- Password: moduretick
+
 ## Entity–Relationship Model
 ![Model](https://github.com/developer-rrm14/rrm14-ms-matriz-curricular/blob/main/assets/mer.png)
 
